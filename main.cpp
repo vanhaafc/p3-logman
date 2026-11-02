@@ -3,8 +3,10 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <fstream>
 
 #include <getopt.h>
+#include "Commands.hpp"
 
 using namespace std;
 
@@ -50,8 +52,7 @@ void getOptions(int argc, char **argv, Options &options) {
             exit(0);
 
         case 'f':
-            //TODO: get the input file
-            //options.input_file = 
+            options.input_file = optarg;
             break;
 
         default:
@@ -68,22 +69,11 @@ int main(int argc, char *argv[]){
   Options options;
   getOptions(argc, argv, options);
 
-  // TODO: finish main
-  // Read cmd (switch this to after log file)
-  char cmd;
-  do {
-    cout << "% ";
-    cin >> cmd;
-    // TODO: Process cmd
-  } while (cmd != 'q');
-
-  // Read log file
-  string ts, cat, msg;
-  while(getline(cin, ts, '|')){
-    getline(cin, cat, '|');
-    getline(cin, msg);
-    // TODO: add to data structure?
-  }
+  ifstream in(options.input_file);
+  
+  Commands c(options.input_file);
+  // Run the program
+  c.read();
 
   return 0;
 } // main()
