@@ -53,19 +53,19 @@ class Commands {
     vector<int> keywordResults;
     bool searched = false;
 
-    uint64_t timestampToInt(string ts){
+    uint64_t timestampToInt(const string &ts){
       uint64_t result = 0;
-      for (char c : ts) {
-          if (c != ':') {
-              result = result * 10 + static_cast<uint64_t>(c - '0');
+      for (char ch : ts) {
+          if (ch != ':') {
+              result = result * 10 + static_cast<uint64_t>(ch - '0');
           }
       }
       return result;
     }
 
     string lowercase(string s){
-      for (char &c : s) {
-        c = static_cast<char>(std::tolower(static_cast<unsigned char>(c)));
+      for (char &ch : s) {
+        ch = static_cast<char>(std::tolower(static_cast<unsigned char>(ch)));
       }
 
       return s;
@@ -78,7 +78,7 @@ class Commands {
       }
     }
 
-    vector<string> splitKeywords(string s){
+    vector<string> splitKeywords(const string &s){
       vector<string> words;
       string current = "";
       for(size_t i = 0; i < static_cast<size_t>(s.length()); i++){
@@ -111,15 +111,15 @@ class Commands {
     }
 
     void a(){
-      size_t input;
+      int input;
       cin >> input;
 
-      if(input >= logs.size() || input < 0){
+      if(input >= static_cast<int>(logs.size()) || input < 0){
         cerr << "Invalid input\n";
         return;
       }
       
-      int new_position = idToIndex[input];
+      int new_position = idToIndex[static_cast<size_t>(input)];
       excerpt.push_back(new_position);
 
       cout << "log entry " << input << " appended\n";
@@ -163,10 +163,10 @@ class Commands {
         return;
       }
 
-      uint64_t t = timestampToInt(input);
-      auto lower = lower_bound(logs.begin(), logs.end(), t,
+      uint64_t ti = timestampToInt(input);
+      auto lower = lower_bound(logs.begin(), logs.end(), ti,
         [](const LogEntry &a, uint64_t value) { return a.time_stamp < value;});
-      auto upper = upper_bound(logs.begin(), logs.end(), t,
+      auto upper = upper_bound(logs.begin(), logs.end(), ti,
         [](uint64_t value, const LogEntry &a) { return value < a.time_stamp;});
 
       int count = static_cast<int>(upper - lower);
@@ -262,14 +262,14 @@ class Commands {
     }
 
     void e(){
-      size_t input;
+      int input;
       cin >> input;
-      if(input >= excerpt.size() || input < 0){
+      if(input >= static_cast<int>(excerpt.size()) || input < 0){
         cerr << "Invalid input\n";
         return;
       }
 
-      excerpt.push_back(excerpt[input]);
+      excerpt.push_back(excerpt[static_cast<size_t>(input)]);
       excerpt.erase(excerpt.begin() + static_cast<int>(input));
 
       cout << "Moved excerpt list entry " << input << "\n";
@@ -277,10 +277,10 @@ class Commands {
 
     void l(){
       cout << "excerpt list cleared\n";
-      cout << "previous contents:\n";
       
       if(excerpt.empty()) cout << "(previously empty)\n";
       else{
+        cout << "previous contents:\n";
         size_t start = static_cast<size_t>(excerpt[0]);
         cout << 0 << "|" << logs[start].entry_id << "|" << logs[start].og_timestamp << 
             "|" << logs[start].og_cat << "|" << logs[start].message << "\n...\n";
@@ -314,7 +314,7 @@ class Commands {
       cout << 0 << "|" << logs[start].entry_id << "|" << logs[start].og_timestamp << 
           "|" << logs[start].og_cat << "|" << logs[start].message << "\n...\n";
       end = static_cast<size_t>(excerpt[excerpt.size() - 1]);
-      cout << 0 << "|" << logs[end].entry_id << "|" << logs[end].og_timestamp << 
+      cout << (excerpt.size() - 1) << "|" << logs[end].entry_id << "|" << logs[end].og_timestamp << 
           "|" << logs[end].og_cat << "|" << logs[end].message << "\n";
     }
 
@@ -398,20 +398,20 @@ class Commands {
         getline(in, msg);
 
         // make ts into an integer
-        uint64_t t = timestampToInt(ts);
+        uint64_t time = timestampToInt(ts);
 
         // make cat all lowercase (better for comparing)
         string new_cat = lowercase(cat);
 
-        LogEntry l;
-        l.time_stamp = t;
-        l.og_timestamp = ts;
-        l.og_cat = cat;
-        l.lower_cat = new_cat;
-        l.message = msg;
-        l.entry_id = count;
+        LogEntry x;
+        x.time_stamp = time;
+        x.og_timestamp = ts;
+        x.og_cat = cat;
+        x.lower_cat = new_cat;
+        x.message = msg;
+        x.entry_id = count;
 
-        logs.push_back(l);
+        logs.push_back(x);
         count++;
       }
       cout << count << " entries read\n";

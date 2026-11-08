@@ -1,0 +1,19 @@
+# keywords: punctuation, case, category, repeats, digits, missing words
+k print state
+g
+k PRINTSTATE
+g
+k state,print;state
+g
+k print missingword
+g
+r
+k disk
+g
+k 10
+g
+k lock3
+g
+k lock 3
+g
+q

@@ -1,0 +1,5 @@
+00:00:00:01:00|T|one minute
+00:00:00:00:61|T|sixty one seconds
+00:00:00:00:99|T|ninety nine seconds
+00:00:01:00:00|T|one hour
+00:00:00:99:99|T|big minutes

@@ -1,0 +1,6 @@
+05:00:00:00:00|beta|entry zero
+01:00:00:00:00|UI|entry one early
+05:00:00:00:00|Alpha|entry two
+05:00:00:00:00|alpha|entry three
+05:00:00:00:00|BETA|entry four
+05:00:00:00:00|Alpha2|entry five

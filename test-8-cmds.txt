@@ -1,0 +1,15 @@
+# mixed searches into one excerpt list, moves, then sort and clear summaries
+k gamma
+r
+c zeta
+r
+a 1
+b 3
+e 1
+p
+s
+p
+k alpha beta
+g
+l
+q

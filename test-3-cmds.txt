@@ -1,0 +1,13 @@
+# category: whole match, spaces, case-insensitive, no partials, duplicate lines
+c ui PANE
+g
+r
+c ui
+g
+c pan
+g
+r
+c NET
+r
+p
+q

@@ -1,0 +1,10 @@
+# a uses entryID; ties: case-insensitive category, then entryID
+a 0
+a 1
+p
+m 05:00:00:00:00
+g
+r
+s
+p
+q

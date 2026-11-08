@@ -19,7 +19,7 @@ struct Options {
 
 // Print help for the user when requested.
 // argv[0] is the name of the currently executing program
-void printHelp(char *command) {
+void printHelp(const char *command) {
     cout << "Usage: " << command << " [options] < inputfile\n";
     cout << "Options:\n";
     cout << "  -h, --help                     Print this message and exit\n";

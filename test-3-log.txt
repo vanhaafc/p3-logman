@@ -1,0 +1,5 @@
+01:00:00:00:00|UI Pane|window opened
+02:00:00:00:00|ui pane|window closed
+03:00:00:00:00|UI|not the same category
+05:05:05:05:05|Net|Same message
+05:05:05:05:05|Net|Same message

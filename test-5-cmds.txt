@@ -1,0 +1,17 @@
+# comment containing a 1 and p must be ignored
+g
+r
+p
+s
+l
+d 0
+b 0
+e 0
+z
+a 2
+a -1
+a 1
+s
+l
+p
+q

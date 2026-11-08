@@ -1,0 +1,17 @@
+# last search survives edits; r twice; empty c resets the last search
+c app
+r
+r
+p
+d 1
+g
+t 01:00:00:00:00|02:00:00:00:00
+l
+r
+c nothing
+g
+r
+p
+k init start
+r
+q
