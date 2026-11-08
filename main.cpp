@@ -68,11 +68,8 @@ int main(int argc, char *argv[]){
 
   Options options;
   getOptions(argc, argv, options);
-
-  ifstream in(options.input_file);
   
   Commands c(options.input_file);
-  // Run the program
   c.read();
 
   return 0;
